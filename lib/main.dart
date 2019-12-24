@@ -1,22 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/entity/test.dart';
+import 'package:flutter_practice/pages/forum_list_page.dart';
 
 void main() => runApp(MyApp());
 
-final dummySnapshot = [
-  {"name": "Filip", "votes": 15},
-  {"name": "Abraham", "votes": 14},
-  {"name": "Richard", "votes": 11},
-  {"name": "Ike", "votes": 10},
-  {"name": "Justin", "votes": 1},
-];
+
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Baby Names',
-      home: MyHomePage(),
+
+
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home:ForumListPage(),
     );
   }
 }
@@ -67,7 +67,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListTile(
           title: Text(record.name),
           trailing: Text(record.votes.toString()),
-          onTap: () => print(record),
+//            onTap: () => record.reference.updateData({'votes': FieldValue.increment(-1)})
+
+        onTap: (){
+
+            FireBaseTest bean=FireBaseTest();
+            bean.name="dqdwqd";
+            bean.votes=666;
+
+            Firestore.instance.collection('baby').add(bean.toJson());
+
+
+
+
+
+        },
+
         ),
       ),
     );
