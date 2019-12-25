@@ -140,6 +140,7 @@ class ForumDetailState extends State<ForumDetailPage> {
         ));
   }
 
+  ///回复列表项
   _replyItemView(ForumReply replyData) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10,top: 15,bottom: 15),
