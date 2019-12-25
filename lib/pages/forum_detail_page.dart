@@ -121,8 +121,7 @@ class ForumDetailState extends State<ForumDetailPage> {
               alignment: Alignment.center,
               color: Colors.blue,
               child: CommonView.newText(
-                  "Replies:${item.replyList == null ? 0 : item.replyList
-                      .length}",
+                  "Replies:${item.replyList == null ? 0 : item.replyList.length}",
                   12,
                   Colors.white),
             ),
@@ -130,20 +129,21 @@ class ForumDetailState extends State<ForumDetailPage> {
               child: item.replyList == null
                   ? CommonView.newText("No Reply", 16, Colors.black)
                   : ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: item.replyList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _replyItemView(item.replyList[item.replyList.length-index-1]);
-                  }),
+                      shrinkWrap: true,
+                      itemCount: item.replyList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return _replyItemView(
+                            item.replyList[item.replyList.length - index - 1]);
+                      }),
             )
           ],
         ));
   }
 
-  ///回复列表项
+  ///回复列表
   _replyItemView(ForumReply replyData) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10,top: 15,bottom: 15),
+      padding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
       child: Row(
         children: <Widget>[
           Container(
@@ -163,19 +163,25 @@ class ForumDetailState extends State<ForumDetailPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-
-                Padding(child: CommonView.newText(
-                    replyData.content, 18, Colors.black),
-                   padding:EdgeInsets.only(left: 5,)),
+                Padding(
+                    child:
+                        CommonView.newText(replyData.content, 18, Colors.black),
+                    padding: EdgeInsets.only(
+                      left: 5,
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Padding(child: Icon(Icons.access_time,size: 16,),
-                      padding: (EdgeInsets.only(right: 5)),),
-                    CommonView.newText(replyData.replyTime.substring(0, 16),
-                        12, Colors.black),
+                    Padding(
+                      child: Icon(
+                        Icons.access_time,
+                        size: 16,
+                      ),
+                      padding: (EdgeInsets.only(right: 5)),
+                    ),
+                    CommonView.newText(
+                        replyData.replyTime.substring(0, 16), 12, Colors.black),
                   ],
-
                 ),
               ],
             ),
@@ -211,11 +217,13 @@ class ForumDetailState extends State<ForumDetailPage> {
 
                 if (forumItem != null)
                   //record.reference.updateData({'votes': FieldValue.increment(-1)})
-                  forumItem.reference.updateData({'replyList': FieldValue.arrayUnion(replyList.map((v) => v.toJson()).toList())});
+                  forumItem.reference.updateData({
+                    'replyList': FieldValue.arrayUnion(
+                        replyList.map((v) => v.toJson()).toList())
+                  });
 
 //                forumItem.reference.updateData(data)
-
-                },
+              },
             )
           ],
         ),
