@@ -98,7 +98,7 @@ class ForumListSate extends State<ForumListPage> {
         InkWell(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-              return ForumDetailPage(itemData.postTime);
+              return ForumDetailPage(itemData.postTime,itemData.title);
 
             }));
             
@@ -190,21 +190,23 @@ class ForumListSate extends State<ForumListPage> {
               icon: Icon(Icons.send),
               color: Colors.blue,
               onPressed: () {
-                List<ForumReply> replyList=[];
-                replyList.add(ForumReply(content:contentController.text.toString(),
 
-                    authorName: myUserName,replyTime: DateTime.now().toString()
-                ));
+
+
                 ForumItem forumItem = ForumItem(
                     authorName: myUserName,
                     title: titleController.text.toString(),
                     content: contentController.text.toString(),
                     postTime: DateTime.now().toString()
 
-                    ,replyList: replyList
+                    ,
                 );
 
                 Firestore.instance.collection('forum').add(forumItem.toJson());
+
+
+                titleController.clear();
+                contentController.clear();
               },
             )
           ],

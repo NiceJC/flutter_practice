@@ -10,8 +10,9 @@ class ForumDetailPage extends StatefulWidget {
 //  final DocumentReference reference;
 
   final String postTime;
+  final String title;
 
-  ForumDetailPage(this.postTime);
+  ForumDetailPage(this.postTime, this.title);
 
   @override
   State createState() {
@@ -50,7 +51,7 @@ class ForumDetailState extends State<ForumDetailPage> {
               size: 40,
             ),
           ),
-          title: CommonView.newText("FORUM", 18, Colors.white,
+          title: CommonView.newText(widget.title, 18, Colors.white,
               align: TextAlign.center),
         ),
         body: Column(
@@ -222,8 +223,9 @@ class ForumDetailState extends State<ForumDetailPage> {
                         replyList.map((v) => v.toJson()).toList())
                   });
 
-//                forumItem.reference.updateData(data)
-              },
+
+                contentController.clear();
+           },
             )
           ],
         ),
